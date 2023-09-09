@@ -7,6 +7,7 @@ import {useGlobal} from '../stores/global';
 import OwnQuestion from '../views/question/OwnQuestion.vue';
 import { storeToRefs } from 'pinia';
 import Post from '../views/question/Post.vue';
+import Edit from '../views/question/Edit.vue';
 
 
 
@@ -14,6 +15,16 @@ import Post from '../views/question/Post.vue';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    {
+      path:'/',
+      redirect: {name: 'dashboard'}
+    },
+    {
+      path: '/question/edit',
+      name: 'question-edit',
+      component: Edit,
+      meta: { checkLogin: true },
+    },
     {
       path: '/login',
       name: 'login',

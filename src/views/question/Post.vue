@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import { useGlobal } from '../../stores/global';
 import { useRoute } from 'vue-router';
 const post = ref(null)
-const { baseUrl } = useGlobal()
+const { baseUrl, isAuthenticated } = useGlobal()
 const globalStore = useGlobal()
 const comments = ref(null)
 
@@ -15,7 +15,6 @@ const getComment = async () => {
       method: "GET",
     })
     const data = await response.json()
-    console.log(data.messages) 
     if (data.status) {
       comments.value = data.messages
     } else {
@@ -65,10 +64,10 @@ const addComment = async () => {
       },
       body: formData
     })
-    const data = await response.json()   
-    
+    const data = await response.json()
+
     if (data.status) {
-      globalStore.setAlertMsg({ messages: ['berhasil mengirim comment'], status: 1 })      
+      globalStore.setAlertMsg({ messages: ['berhasil mengirim comment'], status: 1 })
     } else {
       globalStore.setAlertMsg({ messages: [data.messages], status: 2 })
     }
@@ -103,8 +102,8 @@ const addComment = async () => {
     <div class="row d-flex justify-content-center">
       <div class="col-md-10 col-lg-8">
         <div class="card shadow-0 border" style="background-color: #f0f2f5;">
-          <div class="card-body p-4">
-            <form class="form-outline mb-4" @submit.prevent="addComment" id="addComment">
+          <div  class="card-body p-4">
+            <form v-if="isAuthenticated" class="form-outline mb-4" @submit.prevent="addComment" id="addComment">
               <textarea class="form-control" name="body" id="body" rows="3" placeholder="Type comment..."></textarea>
               <div class="form-floating mb-3">
                 <input class="form-control" id="inputFile" type="file" placeholder="" name="image" />
@@ -113,11 +112,9 @@ const addComment = async () => {
               <input type="hidden" name="question_id" :value="post.id">
               <button class="btn btn-info mt-2" name="submit" value="submit">Add comment</button>
             </form>
-
             <div class="card mb-4" v-for="item in comments">
               <div class="card-body">
-                <p>{{item.body}}</p>
-
+                <p>{{ item.body }}</p>
                 <div class="d-flex justify-content-between">
                   <div class="d-flex flex-row align-items-center">
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(4).webp" alt="avatar" width="25"

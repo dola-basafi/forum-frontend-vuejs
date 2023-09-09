@@ -1,7 +1,7 @@
 <script setup>
 import { storeToRefs } from 'pinia';
 import {useGlobal} from '../stores/global';
-const {getQuestions} =storeToRefs(useGlobal())  
+const {getQuestions,isAuthenticated} =storeToRefs(useGlobal())  
 
 </script>
 
@@ -9,7 +9,7 @@ const {getQuestions} =storeToRefs(useGlobal())
   <div class="container">
     <table class="table mt-3">
       <thead>
-        <th>Daftar Pertanyaan <router-link class="float-end btn bg-primary text-light" :to="{name:'question-create'}">Buat Pertanyaan</router-link></th>
+        <th>Daftar Pertanyaan <router-link v-if="isAuthenticated" class="float-end btn bg-primary text-light" :to="{name:'question-create'}">Buat Pertanyaan</router-link></th>
       </thead>
       <tbody>
         <tr v-for="item in getQuestions" >

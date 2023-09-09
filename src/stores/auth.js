@@ -57,10 +57,10 @@ export const useAuthStore = defineStore('auth', () => {
       if (data.status) {
         globalStore.setAlertMsg({ messages: ['berhasil login'], status: 1 })
         localStorage.setItem('token', data.messages.token)
-        globalStore.setUser({id:data.messages.name, name:data.messages.name})
-        globalStore.isAuthenticated = true
+        globalStore.setUser({id:data.messages.id, name:data.messages.name})
+        globalStore.isAuthenticated = true        
       } else {
-        globalStore.setAlertMsg({ messages: data.messages, status: 2 })
+        globalStore.setAlertMsg({ messages: [data.messages], status: 2 })
       }
     } catch (e) {
       globalStore.setAlertMsg({ messages: e.message, status: 2 })

@@ -14,9 +14,9 @@ const getListQuestion = async () => {
       }
     })
     const data = await response.json()
+    console.log(data.messages)
     if (data.status) {
       myQuestion.value = data.messages
-      console.log(data.value)
     } else {
       globalStore.setAlertMsg({ messages: data.messages, status: 2 })
     }
@@ -33,12 +33,16 @@ getListQuestion()
       <thead>
         <th>Daftar Pertanyaan <router-link class="float-end btn bg-primary text-light"
             :to="{ name: 'question-create' }">Buat
-            Pertanyaan</router-link></th>
+            Pertanyaan</router-link>
+          </th>
       </thead>
       <tbody>
         <tr v-for="item in myQuestion">
-          <td>{{ item.title }}
-            <span class="float-end">Detail</span>
+          <td>
+            <p>{{ item.title }}
+              <router-link class="float-end text-light btn btn-info" :to="{name:'question-post', params:{id: item.id}}">Detail</router-link>            
+              <router-link class="float-end me-2 text-light btn btn-primary" :to="{name:'question-edit', params:{id: item.id}}">Edit</router-link>            
+            </p>
             <p class="mb-0 pb-0"><small>kategori : {{ item.category.name }}</small> <small class="float-end">Di buat oleh
                 : {{ item.user.name }}</small> </p>
           </td>
