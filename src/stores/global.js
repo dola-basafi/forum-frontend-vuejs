@@ -7,11 +7,12 @@ import { useAuthStore } from './auth';
 export const useGlobal = defineStore('global', () => {
   const authStore = useAuthStore()
   const isAuthenticated = ref(localStorage.getItem('token') ? true : false)
-  const user = ref({name:null,id:null})
+  const user = ref({ name: null, id: null })
   const alertMsg = ref({ messages: '', status: 0 })
   const getCategories = ref(null)
   const getQuestions = ref(null)
   const baseUrl = ref('http://0.0.0.0:8000/api/');
+  
 
   const check = async () => {
     try {
@@ -33,7 +34,6 @@ export const useGlobal = defineStore('global', () => {
     } catch (e) {
       isAuthenticated.value = false
       localStorage.removeItem('token')
-
     }
   }
   check()
@@ -52,8 +52,7 @@ export const useGlobal = defineStore('global', () => {
         authStore.setAlertMsg({ messages: data.messages, status: 2 })
       }
     } catch (e) {
-      console.log([e.message])
-      authStore.setAlertMsg({ messages: [e.message], status: 2 })      
+      authStore.setAlertMsg({ messages: [e.message], status: 2 })
     }
   }
   setQuestions()
