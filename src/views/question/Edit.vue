@@ -2,14 +2,17 @@
 import { storeToRefs } from 'pinia';
 import { useGlobal } from '../../stores/global';
 import { useRoute } from 'vue-router';
+import { ref } from 'vue';
 
+const globalStore = useGlobal()
 const { getCategories, baseUrl } = storeToRefs(useGlobal())
 const storeGlobal = useGlobal()
 const id = useRoute()
+const post = ref({})
 
 const getQuestion = async ()=>{
   try {
-    const response = await fetch(`${baseUrl}question/detail/${id.params.id}`, {
+    const response = await fetch(`${baseUrl.value}question/detail/${id.params.id}`, {
       method: "GET",
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -20,10 +23,10 @@ const getQuestion = async ()=>{
     if (data.status) {
       post.value = data.messages
     } else {      
-      globalStore.setAlertMsg({ messages: data.messages, status: 2 })
+      globalStore.setAlertMsg({ messages: [data.messages], status: 2 })
     }
   } catch (e) {
-    globalStore.setAlertMsg({ messages: e.message, status: 2 })
+    globalStore.setAlertMsg({ messages: [e.message], status: 2 })
   }
 }
 getQuestion()
@@ -47,7 +50,7 @@ const edit = async () => {
     })
     const data = await response.json()
     if (data.status) {
-      storeGlobal.setAlertMsg({ messages: ['berhasil post pertanyaan'], status: 1 })
+      storeGlobal.setAlertMsg({ messages: ['berhasil update pertanyaan'], status: 1 })
     } else {
       storeGlobal.setAlertMsg({ messages: data.messages, status: 2 })
     }
@@ -70,11 +73,11 @@ const edit = async () => {
           <div class="card-body">
             <form @submit.prevent="edit" id="questionCreate">
               <div class="form-floating mb-3">
-                <input class="form-control" id="judul" type="text" placeholder="judul" name="title" />
+                <input class="form-control" id="judul" type="text" placeholder="judul" name="title" :value="post.title" />
                 <label for="judul">Judul</label>
               </div>
               <div class="form-floating mb-3">
-                <input class="form-control" id="isi" type="text" placeholder="Isi" name="body"/>
+                <input class="form-control" id="isi" type="text" placeholder="Isi" name="body" :value="post.body"/>
                 <label for="isi">Isi</label>
               </div>
               <div class="form-floating ">

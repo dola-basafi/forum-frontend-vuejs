@@ -21,7 +21,7 @@ const check = computed(() => {
     </button>
 
     
-    <div class="btn-group ms-auto me-1">
+    <!-- <div class="btn-group ms-auto me-1">
       <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
         Kategori
       </button>
@@ -35,18 +35,18 @@ const check = computed(() => {
           aria-describedby="btnNavbarSearch" />
         <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
       </div>
-    </form>
-    <div v-if="!check">
+    </form> -->
+    <div v-if="!check" class="ms-auto">
       <router-link :to="{ name: 'login' }" class="btn btn-primary me-3">Login</router-link>
       <router-link :to="{ name: 'register' }" class="btn btn-info me-3">Register</router-link>
     </div>
-    <ul v-else class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+    <ul v-else class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4 ">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
           aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-          <li><a class="dropdown-item" href="#!">Settings</a></li>
-          <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+          <!-- <li><a class="dropdown-item" href="#!">Settings</a></li>
+          <li><a class="dropdown-item" href="#!">Activity Log</a></li> -->
           <li>
             <hr class="dropdown-divider" />
           </li>

@@ -1,10 +1,11 @@
 <script setup>
 import { storeToRefs } from 'pinia';
 import { useGlobal } from '../../stores/global';
+import router from '../../router';
+
 
 const { getCategories, baseUrl } = storeToRefs(useGlobal())
 const storeGlobal = useGlobal()
-
 const create = async () => {
   const form = document.getElementById('questionCreate')
   const submitter = document.querySelector("button[value=submit]")
@@ -25,6 +26,7 @@ const create = async () => {
     const data = await response.json()
     if (data.status) {
       storeGlobal.setAlertMsg({ messages: ['berhasil post pertanyaan'], status: 1 })
+      router.push({name:'question-own'})
     } else {
       storeGlobal.setAlertMsg({ messages: data.messages, status: 2 })
     }

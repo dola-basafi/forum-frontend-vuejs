@@ -20,7 +20,11 @@ const router = createRouter({
       redirect: {name: 'dashboard'}
     },
     {
-      path: '/question/edit',
+      path:'/question/edit',
+      redirect: {name: 'dashboard'}
+    },
+    {
+      path: '/question/edit/:id',
       name: 'question-edit',
       component: Edit,
       meta: { checkLogin: true },
