@@ -8,6 +8,7 @@ import OwnQuestion from '../views/question/OwnQuestion.vue';
 import { storeToRefs } from 'pinia';
 import Post from '../views/question/Post.vue';
 import Edit from '../views/question/Edit.vue';
+import Profil from '../views/Profil.vue';
 
 
 
@@ -15,6 +16,12 @@ import Edit from '../views/question/Edit.vue';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    {
+      path:'/profil',
+      name: 'profil',
+      component: Profil,
+      meta: { checkLogin: true },
+    },
     {
       path:'/',
       redirect: {name: 'dashboard'}

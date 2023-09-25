@@ -114,7 +114,7 @@ const addComment = async () => {
     formData.append('file', fileInput.files[0])
   }
   try {
-    const response = await fetch(`${baseUrl}answer/create`, {
+    const response = await fetch(`${baseUrl.value}answer/create`, {
       method: "POST",
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,

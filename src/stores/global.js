@@ -49,7 +49,7 @@ export const useGlobal = defineStore('global', () => {
       if (data.status) {
         getQuestions.value = data.messages
       } else {
-        authStore.setAlertMsg({ messages: data.messages, status: 2 })
+        authStore.setAlertMsg({ messages: [data.messages], status: 2 })
       }
     } catch (e) {
       authStore.setAlertMsg({ messages: [e.message], status: 2 })
@@ -72,10 +72,10 @@ export const useGlobal = defineStore('global', () => {
       if (data.status) {
         getCategories.value = data.messages
       } else {
-        authStore.setAlertMsg({ messages: data.messages, status: 1 })
+        authStore.setAlertMsg({ messages: [data.messages], status: 2 })
       }
     } catch (e) {
-      setAlertMsg({ messages: e.message, status: 1 })
+      setAlertMsg({ messages: [e.message], status: 2 })
     }
   }
   setCategories()

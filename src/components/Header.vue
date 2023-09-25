@@ -48,9 +48,15 @@ const check = computed(() => {
           <!-- <li><a class="dropdown-item" href="#!">Settings</a></li>
           <li><a class="dropdown-item" href="#!">Activity Log</a></li> -->
           <li>
+            <router-link :to="{ name: 'profil' }" >
+              <button class="dropdown-item bg-info text-light text-center" >Profil</button>
+            </router-link>
+          </li>
+
+          <li>
             <hr class="dropdown-divider" />
           </li>
-          <li><button class="dropdown-item bg-danger text-light" @click="logout">Logout</button></li>
+          <li><button class="dropdown-item bg-danger text-light text-center" @click="logout">Logout</button></li>
         </ul>
       </li>
     </ul>

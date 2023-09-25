@@ -22,10 +22,10 @@ export const useAuthStore = defineStore('auth', () => {
         globalStore.setIsAuthenticated(false)
         router.push({name:'dashboard'})
       } else {
-        globalStore.setAlertMsg({ messages: data.messages, status: 2 })
+        globalStore.setAlertMsg({ messages: [data.messages], status: 2 })
       }
     } catch (error) {
-      globalStore.setAlertMsg({ messages: e.message, status: 2 })      
+      globalStore.setAlertMsg({ messages: [e.message], status: 2 })      
     }
     
   }
@@ -39,12 +39,12 @@ export const useAuthStore = defineStore('auth', () => {
       const data = await response.json()
       if (data.status) {
         globalStore.setAlertMsg({ messages: data.messages, status: 1 })
-
+        router.push({name:'login'})
       } else {
-        globalStore.setAlertMsg({ messages: data.messages, status: 2 })
+        globalStore.setAlertMsg({ messages: [data.messages], status: 2 })
       }
     } catch (e) {
-      globalStore.setAlertMsg({ messages: e.message, status: 2 })
+      globalStore.setAlertMsg({ messages: [e.message], status: 2 })
     }
   }
   async function login(formData) {
@@ -63,7 +63,7 @@ export const useAuthStore = defineStore('auth', () => {
         globalStore.setAlertMsg({ messages: [data.messages], status: 2 })
       }
     } catch (e) {
-      globalStore.setAlertMsg({ messages: e.message, status: 2 })
+      globalStore.setAlertMsg({ messages: [e.message], status: 2 })
     }
     router.push({name:'dashboard'})
   }
