@@ -26,6 +26,7 @@ export const useGlobal = defineStore('global', () => {
       const data = await response.json()
       if (!data.error) {
         setUser({ id: data.id, name: data.name })
+        console.log(data)
       } else {
         isAuthenticated.value = false
         localStorage.removeItem('token')

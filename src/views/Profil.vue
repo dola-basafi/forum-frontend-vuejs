@@ -17,6 +17,7 @@ const getProfil = async () => {
         const data = await response.json()
         if (data.status) {
             profil.value = data.messages
+            console.log(profil.value)
         } else {
             globalStore.setAlertMsg({ messages: data.messages, status: 2 })
         }
@@ -65,6 +66,7 @@ const profilChange = async () => {
                     <div class="card-header">
                         <h3 class="text-center font-weight-light my-4">Profil</h3>
                     </div>
+                    <img :src="profil.image.url" class="rounded-circle mx-auto" style="width: 150px;" alt="Avatar" />
                     <div class="card-body">
                         <form @submit.prevent="profilChange" id="editProfil">
                             <div class="form-floating mb-3">
@@ -78,9 +80,9 @@ const profilChange = async () => {
                                 <label for="name">name</label>
                             </div>
                             <div class="form-floating mb-3">
-                <input class="form-control" id="inputFile" type="file" placeholder="" name="image" />
-                <label for="inputFile">File</label>
-              </div>
+                                <input class="form-control" id="inputFile" type="file" placeholder="" name="image" />
+                                <label for="inputFile">Ganti Foto</label>
+                            </div>
                             <div class="d-grid mx-auto col-4">
                                 <button class="btn btn-primary  " value="submit">Update</button>
                             </div>
