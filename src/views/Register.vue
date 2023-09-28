@@ -1,7 +1,14 @@
 <script setup>
+import router from '../router';
 import {useAuthStore} from '../stores/auth';
-const authStore = useAuthStore()
+import {useGlobal} from '../stores/global';
 
+const authStore = useAuthStore()
+const globalStore = useGlobal()
+const {isAuthenticated} = globalStore
+if (isAuthenticated) {
+    router.push({name:'dashboard'})
+}
 const register =  async () =>{
   const form = document.getElementById('regis')
   const submitter = document.querySelector("button[value=submit]")

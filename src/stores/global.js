@@ -7,7 +7,7 @@ import { useAuthStore } from './auth';
 export const useGlobal = defineStore('global', () => {
   const authStore = useAuthStore()
   const isAuthenticated = ref(localStorage.getItem('token') ? true : false)
-  const user = ref({ name: null, id: null })
+  const user = ref({ name: null, id: null, img:null })
   const alertMsg = ref({ messages: '', status: 0 })
   const getCategories = ref(null)
   const getQuestions = ref(null)
@@ -16,7 +16,7 @@ export const useGlobal = defineStore('global', () => {
 
   const check = async () => {
     try {
-      const response = await fetch(`${baseUrl.value}user`, {
+      const response = await fetch(`${baseUrl.value}profil`, {
         method: "GET",
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -24,17 +24,17 @@ export const useGlobal = defineStore('global', () => {
         }
       })
       const data = await response.json()
-      if (!data.error) {
-        setUser({ id: data.id, name: data.name })
-        console.log(data)
+      setTimeout(() => {
+      }, 500);
+      if (data.status) {
+        setUser({ id: data.messages.id, name: data.messages.name, img:data.messages.url })
       } else {
         isAuthenticated.value = false
         localStorage.removeItem('token')
-      }
+      }        
 
     } catch (e) {
-      isAuthenticated.value = false
-      localStorage.removeItem('token')
+      // console.log(e.message)     
     }
   }
   check()

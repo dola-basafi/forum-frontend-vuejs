@@ -17,7 +17,6 @@ const getProfil = async () => {
         const data = await response.json()
         if (data.status) {
             profil.value = data.messages
-            console.log(profil.value)
         } else {
             globalStore.setAlertMsg({ messages: data.messages, status: 2 })
         }
