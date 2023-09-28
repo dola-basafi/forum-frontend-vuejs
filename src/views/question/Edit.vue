@@ -3,6 +3,7 @@ import { storeToRefs } from 'pinia';
 import { useGlobal } from '../../stores/global';
 import { useRoute } from 'vue-router';
 import { ref } from 'vue';
+import router from '../../router';
 
 const globalStore = useGlobal()
 const { getCategories, baseUrl } = storeToRefs(useGlobal())
@@ -51,6 +52,7 @@ const edit = async () => {
     const data = await response.json()
     if (data.status) {
       storeGlobal.setAlertMsg({ messages: ['berhasil update pertanyaan'], status: 1 })
+      router.push({name:'dashboard'})
     } else {
       storeGlobal.setAlertMsg({ messages: data.messages, status: 2 })
     }
