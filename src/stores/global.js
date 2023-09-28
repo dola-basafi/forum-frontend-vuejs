@@ -82,6 +82,7 @@ export const useGlobal = defineStore('global', () => {
   setCategories()
   setQuestions()
   return {
+    setQuestions,
     isAuthenticated,
     alertMsg,
     setAlertMsg,

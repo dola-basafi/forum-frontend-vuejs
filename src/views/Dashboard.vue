@@ -1,8 +1,8 @@
 <script setup>
 import { storeToRefs } from 'pinia';
 import {useGlobal} from '../stores/global';
-const {getQuestions,isAuthenticated} =storeToRefs(useGlobal())  
-
+const {getQuestions,isAuthenticated} = storeToRefs(useGlobal())  
+useGlobal.setQuestions
 </script>
 
 <template>
