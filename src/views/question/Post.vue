@@ -5,6 +5,8 @@ import { useRoute } from 'vue-router';
 import { storeToRefs } from 'pinia';
 const post = ref({})
 const { baseUrl, isAuthenticated, user } = storeToRefs(useGlobal())
+setTimeout(() => {
+}, 500);
 const globalStore = useGlobal()
 const comments = ref(null)
 const commentEdit = ref({ body: '', image: '', id: null })
@@ -97,6 +99,7 @@ const getPost = async () => {
     const data = await response.json()
     if (data.status) {
       post.value = data.messages
+      post.value.created_at = new Date(post.value.created_at).toLocaleDateString('en-GB')
     } else {
       globalStore.setAlertMsg({ messages: data.messages, status: 2 })
     }
@@ -153,6 +156,7 @@ const addComment = async () => {
       <!-- Post content-->
       <section class="mb-5">
         {{ post.body }}
+        <p>{{ post.user.username }}</p>
       </section>
     </article>
   </div>
@@ -207,10 +211,9 @@ const addComment = async () => {
                 </div>
                 <div class="d-flex justify-content-between">
                   <div class="d-flex flex-row align-items-center overflow-auto">
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(4).webp" alt="avatar" width="25"
-                      height="25" />
-                    <p class="small mb-0 ms-2 overflow-auto">{{ item.user.name }} </p>
-                    <div class="float-end d-flex" v-if="item.user.id === user.id">
+                    
+                    <p class="small mb-0 ms-2 overflow-auto">by : {{ item.user.name }} </p>
+                    <div class=" d-flex" v-if="item.user.id === user.id">
                       <button class="btn btn-info ms-2 " data-bs-toggle="modal" data-bs-target="#staticBackdrop"
                         @click="setCommentEdit(item.body, item.image.url, item.id)">edit</button>
                       <button class="btn btn-danger  ms-1 me-2 " @click="deleteComment(item.id)">delete</button>

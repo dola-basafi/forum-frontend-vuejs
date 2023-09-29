@@ -1,9 +1,11 @@
 <script setup>
 import { ref } from 'vue';
 import { useGlobal } from '../stores/global';
+import router from '../router';
 
-const storeGlobal = useGlobal()
-const baseUrl = storeGlobal.baseUrl
+
+const globalStore = useGlobal()
+const baseUrl = globalStore.baseUrl
 const profil = ref(null)
 const getProfil = async () => {
     try {
@@ -47,6 +49,7 @@ const profilChange = async () => {
             globalStore.setAlertMsg({ messages: ['berhasil update profil'], status: 1 })
             profil.value = { city: '', name: '' }
             getProfil()
+            router.push({name:'dashboard'})
         } else {
             globalStore.setAlertMsg({ messages: [data.messages], status: 2 })
         }

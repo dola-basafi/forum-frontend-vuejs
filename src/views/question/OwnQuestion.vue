@@ -66,7 +66,7 @@ getListQuestion()
               :to="{ name: 'question-edit', params: { id: item.id } }">Edit</router-link>
             </p>
             <p class="mb-0 pb-0"><small>kategori : {{ item.category.name }}</small> <small class="float-end">Di buat oleh
-                : {{ item.user.name }}</small> </p>
+                : {{ item.user.username }}</small> </p>
           </td>
         </tr>
       </tbody>

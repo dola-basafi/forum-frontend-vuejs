@@ -15,7 +15,7 @@ useGlobal.setQuestions
         <tr v-for="item in getQuestions" >
           <td >{{ item.title }}
             <router-link class="float-end" :to="{name:'question-post', params:{id: item.id}}">Detail</router-link>            
-            <p class="mb-0 pb-0"><small>kategori : {{ item.category.name }}</small> <small class="float-end">Di buat oleh : {{ item.user.name }}</small> </p>
+            <p class="mb-0 pb-0"><small>kategori : {{ item.category.name }}</small> <small class="float-end">Di buat oleh : {{ item.user.username }}</small> </p>
           </td>          
         </tr>
       </tbody>

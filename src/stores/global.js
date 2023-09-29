@@ -24,10 +24,9 @@ export const useGlobal = defineStore('global', () => {
         }
       })
       const data = await response.json()
-      setTimeout(() => {
-      }, 500);
+     
       if (data.status) {
-        setUser({ id: data.messages.id, name: data.messages.name, img:data.messages.url })
+        setUser({ id: data.messages.id, name: data.messages.username, img:data.messages.image.url })
       } else {
         isAuthenticated.value = false
         localStorage.removeItem('token')
@@ -38,8 +37,8 @@ export const useGlobal = defineStore('global', () => {
     }
   }
   check()
-  async function setUser(val) {
-    user.value = val
+  const setUser = (val) =>{
+    user.value = val   
   }
   async function setQuestions() {
     try {

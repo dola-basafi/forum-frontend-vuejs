@@ -43,8 +43,8 @@ const check = computed(() => {
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
           aria-expanded="false">
-          <i class="fas fa-user fa-fw" ></i>
-          <!-- <img :src="user.value.image.url" class="rounded-circle mx-auto" style="width: 150px;" alt="Avatar" /> -->
+          <!-- <i class="fas fa-user fa-fw" ></i> -->
+          <img :src="user.img ? user.img :'https://cdn-icons-png.flaticon.com/128/1144/1144760.png'" class="rounded-circle mx-auto border border-white" style="width: 50px;" alt="Avatar" />
 
         </a>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
