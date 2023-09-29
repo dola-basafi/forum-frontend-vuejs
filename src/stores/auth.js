@@ -57,7 +57,7 @@ export const useAuthStore = defineStore('auth', () => {
       if (data.status) {
         globalStore.setAlertMsg({ messages: ['berhasil login'], status: 1 })
         localStorage.setItem('token', data.messages.token)
-        globalStore.setUser({id:data.messages.id, name:data.messages.name, img:data.messages.image.url})
+        globalStore.setUser({id:data.messages.id, name:data.messages.name, img:data.messages.image})
         globalStore.isAuthenticated = true        
       } else {
         globalStore.setAlertMsg({ messages: [data.messages], status: 2 })
@@ -66,6 +66,7 @@ export const useAuthStore = defineStore('auth', () => {
       globalStore.setAlertMsg({ messages: [e.message], status: 2 })
     }
     router.push({name:'dashboard'})
+    
   }
   return { register, login, logout }
 })
