@@ -156,7 +156,6 @@ const addComment = async () => {
       <!-- Post content-->
       <section class="mb-5">
         {{ post.body }}
-        <p>{{ post.user.username }}</p>
       </section>
     </article>
   </div>
