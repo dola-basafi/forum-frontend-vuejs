@@ -50,7 +50,7 @@ getListQuestion()
   <div class="container">
     <table class="table mt-3">
       <thead>
-        <th>Daftar Pertanyaan <router-link class="float-end btn bg-primary text-light"
+        <th>Daftar Pertanyaan Saya <router-link class="float-end btn bg-primary text-light"
             :to="{ name: 'question-create' }">Buat
             Pertanyaan</router-link>
         </th>
